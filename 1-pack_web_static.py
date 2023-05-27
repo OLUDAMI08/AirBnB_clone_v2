@@ -7,17 +7,22 @@
 import os
 from datetime import datetime
 from fabric.api import local
-from fabric.api import local, cd
+
 
 def do_pack():
-    if not os.path.isdir("versions"):
-        os.mkdir("versions")
+    """Create a tar gzipped archive of the directory web_static"""
+    try:
+        dt = datetime.now()
+        file_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
+                                                                  dt.month,
+                                                                  dt.day,
+                                                                  dt.hour,
+                                                                  dt.minute,
+                                                                  dt.second)
+        if not os.path.isdir("versions"):
+            local("mkdir versions")
 
-    dt = datetime.utcnow()
-    file = "web_static_{}{}{}{}{}.tgz".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
-
-    with cd("versions"):
-        if local("tar czvf {} web_static".format(file)).failed:
-            return None
-
-    return "versions/{}".format(file)
+        local("tar -cvzf {} web_static/*".format(file_name))
+        return file_name
+    except Exception:
+        return None
