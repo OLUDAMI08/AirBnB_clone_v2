@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-""" Fabric script that generates a .tgz archive from the contents of the web_static folder of the AirBnB Clone repo"""
+""" Fabric script that generates a .tgz archive from the contents of the web_static of AirBnB folder of the AirBnB Clone repo"""
 
 
 
