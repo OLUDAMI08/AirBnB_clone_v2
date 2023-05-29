@@ -14,7 +14,7 @@ def do_pack():
     web_static folder of AirBnB Clone v2, using the function do_pack.
     """
     try:
-        if not os.path.exists('versions'):
+        if not os.path.isdir('versions'):
             local('mkdir versions')
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         file_name = "versions/web_static_{}.tgz".format(date)
